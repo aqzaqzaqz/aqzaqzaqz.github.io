@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+	DONT
+	HACK
+	MY
+	GAME
+
+	( ͡° ͜ʖ ͡°)
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.7">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="manifest" href="/manifest.json">
+	<title>TileMan.io</title>
+	<meta name="description" content="Play against other players and expand your territory! Try different game modes in bug free splix.io!">
+	<meta name="robots" content="index, follow">
+	<link rel="canonical" href="http://tileman.io">
+	
+	<meta property="og:type" content="game"> 
+	<meta property="og:title" content="TileMan.io">
+	<meta property="og:description" content="Play against other players and expand your territory! Try different game modes in bug free splix.io!">
+	<meta property="og:url" content="http://tileman.io">
+	<meta property="og:image" content="http://tileman.io/tileman-image.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<script type="application/ld+json"></script>
+	
+	<link rel="stylesheet"  href="/style.css">
+	<link rel="icon" href="/favicon.ico">
+	<script src="/socket.io/socket.io.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130575008-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-130575008-1');
+	</script>
+
+</head>
+<body>
+	<div id=intro>
+		<h1>TileMan.io</h1>
+		<div id=info></div>
+		<br>
+		<form id=playform method=post>
+			<input autocomplete="on" id=nick maxlength="20" placeholder="Enter your name"><br>
+			<select id=region>
+				<option value="Europe">EU</option>
+				<option value="USA">USA</option>
+			</select>
+			<select id=mode>
+				<option value="normal">Normal</option>
+				<option value="extreme_bobs">Rats</option>
+				<option value="extreme_speed">Extreme speed</option>
+				<option value="test">Arena</option>
+			</select><br>
+			<button id=play autofocus type=button>Play!</button>
+			<!--<p class=hidden data-txt="efgh">abc </p>-->
+		</form>
+		
+		<div >
+		<table border=1 id=local_score>
+			<tr>
+				<th></th>
+				<th>High score</th>
+				<th>Last game</th>
+			</tr>
+			<tr>
+				<td>Tiles captured</td>
+				<td id=bh>-</td>
+				<td id=bl>-</td>
+			</tr>
+			<tr>
+				<td>Kills</td>
+				<td id=kh>-</td>
+				<td id=kl>-</td>
+			</tr>
+			<tr>
+				<td>Time alive</td>
+				<td id=tih>-</td>
+				<td id=til>-</td>
+			</tr>
+			<tr>
+				<td>Trail length</td>
+				<td id=trh>-</td>
+				<td id=trl>-</td>
+			</tr>
+		</table>
+		</div>
+		<br>
+		<p>Move with <b>WASD</b>, <b>arrows</b> or <b>numpad</b>. Stop with <b>E</b>, <b>P</b> or <b>num 5</b>. <br>Or use <b>touch</b> controls.<br>Return to your area to expand your territory.</p>
+		<p>Game is  BETA<br>Write your opinions and report bugs on <a href="https://discord.gg/FdkKWHr" target="_blank">discord</a> or <a href="https://www.reddit.com/r/tilemanio/" target="_blank">reddit</a>.</p>
+		
+		
+	<div id=links><a href="/">TileMan.io</a> | <a href="/leaderboard.html">Leaderboard</a> | <a href="/settings.html">Settings</a> | <a href="/changelog.txt" target="_blank">Changelog</a> | <a href="/differences.html">Differences to splix</a></div>
+	<div id=social> <a href="https://www.facebook.com/sharer/sharer.php?u=tileman.io" target="_blank" class=fb-link onclick="window.open(this.href,'','width=550,height=420,left='+((screen.width/2)-(550/2))+',top=80,scrollbars=yes,resizable=yes');localStorage.sha=true;return false" onauxclick="localStorage.sha=true;">Share</a>  <a href="https://twitter.com/intent/tweet?hashtags=tilemanio&text=Play%20this%20game&url=http%3A%2F%2Ftileman.io" target="_blank" class=tw-link onclick="window.open(this.href,'','width=550,height=420,left='+((screen.width/2)-(550/2))+',top=80,scrollbars=yes,resizable=yes');localStorage.sha=true;return false" onauxclick="localStorage.sha=true;">Tweet</a> <a href="https://discord.gg/FdkKWHr" target="_blank" class=dis-link>Discord</a>  <a href="https://www.reddit.com/r/tilemanio/" target="_blank" class=red-link>Reddit</a><br><br></div>
+	</div>
+	<div id=game>
+		<canvas id=canvas></canvas>
+		
+		<div id=player_stats class="corner_left">
+			<h3 id=player_name></h3>
+			<div><div class=stat_name>Score: </div><div id=score>0</div></div>
+			<div><div class=stat_name>Tiles: </div><div id=captured>0</div></div>
+			<div><div class=stat_name>Kills: </div><div id=kills>0</div></div>
+			<div><div class=stat_name>Rank: </div><div id=rank>0</div></div></div>
+		<div id=leaderboard class=corner>
+			<h3>Leaderboard</h3>
+			<ol id=leaders>
+			</ol>
+		</div>
+		<div id=performance_stats class="corner">
+			<div><div class=stat_name>FPS: </div><div id=fps>0</div></div>
+			<div><div class=stat_name>Latency: </div><div id=latency>0</div></div>
+		</div>
+		<div id=touch>
+			<div id=up></div>
+			<div id=left></div>
+			<div id=right></div>
+			<div id=down></div>
+			<div id=pause></div>
+		</div>
+	</div>
+	<script src="hra.js"></script>
+	<script type="text/javascript">var clicky_custom = clicky_custom || {};clicky_custom.visitor = {username: localStorage.n};</script>
+	<script src="//static.getclicky.com/js" type="text/javascript"></script>
+	<script type="text/javascript">try{ clicky.init(101149435); }catch(e){}</script>
+	<noscript><p><img width="1" height="1" src="//in.getclicky.com/101149435ns.gif" /></p></noscript>
+</body>
+</html>
