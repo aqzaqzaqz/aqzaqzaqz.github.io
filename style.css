@@ -1,0 +1,145 @@
+body{background-color: #1E1E1E;color:white;font-family:"Comic Sans MS";margin: 0;padding: 10px;background: fixed repeat center/100% url(tileman-blur-black.png) #1E1E1E;}
+body>:not(#intro):not(#game) {display: none !important;left: 0px;position: absolute !important;pointer-events: none;opacity: 0;visibility: hidden;}
+table{border-collapse:collapse;border:1px solid;display: inline-table;background-color: rgba(128, 128, 128,.5);}
+th,td{padding:10px;}
+a{text-decoration: none;color:#55f}
+a:hover{text-decoration: underline}
+hr{height: 1px;border:0;background-color: white;max-width: 500px;margin:20px auto}
+small{color:#999}
+label{user-select: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;user-select: none;}
+iframe{display: none !important}
+.colorbox{width: 50px;height:50px;display: block}
+
+#links{position: absolute;right:5px;top: 0;}
+#links a{padding-top: 5px;display: inline-block;padding-bottom: 22px}/*titotu fix*/
+#social{position: fixed;left:5px;bottom: 5px}
+#social a{color: white;background: green;border-radiuss: 5px;bbox-shadow: 0px -10px #f00;padding: 5px;font-weight: bold;opacity:.5;background-size: 20px;background-repeat: no-repeat;background-position: 0 center;}
+#social a:hover{text-decoration: none;opacity:1}
+#social a.tw-link{background-color: #1b95e0;background-image: url(twitter.png);padding-left: 20px}
+#social a.fb-link{background: #3b5998;background-image: url(fb.png);background-size: 20px;background-repeat: no-repeat;background-position: 0 center; padding-left: 20px}
+#social a.dis-link{background-color: #7289da;background-image: url(discord.png);padding-left: 20px}
+#social a.red-link{background-color: rgb(255, 69, 0);background-image: url(reddit.png);padding-left: 20px}
+
+ol {
+    counter-reset: li;
+    list-style-type: none;
+	background-color: rgba(0,0,0,.0);
+	margin: 0; ppadding:5px;padding-left: 32px;padding-left: 27px;
+	font-sizee: 12px
+}
+ol li{
+    position:relative;text-align: left;
+}
+ol li:before{
+    content: counter(li)'.';
+    counter-increment: li;
+    position:absolute;
+    right:100%;
+    margin-right:0.5em;
+}
+
+div.lb h3{position: relative;top:40px}
+
+a.lb{position: fixed;display: none}
+div.lb{display: none}
+a.lb#normal+div.lb{display: block}
+a.lb:target~a.lb#normal+div.lb{display: none}
+a.lb:target+div.lb{display: block}
+
+#intro{text-align:center;}
+h1{/*perspective: 1000px;transform: rotateY(50deg);*//*transform: perspective(10em) rotateX(20deg);*/color:red;text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #900,
+    -1px 1px 0 #900,
+    1px 1px 0 #900,
+	4px 2px 5px rgba(250, 250, 250, 0.99);
+	font-size: 60px
+}
+
+#play{background-color:firebrick;color:white;border:0;font-size:50px;bborder-radius: 30px;padding:10px;width:220px;box-sizing: content-box}
+#play.loading:after{background-image:url(loading.gif);background-size: 50px 50px;background-position: center;background-repeat: no-repeat; width: 50px;height:35px;content: "";display: inline-block}
+#nick{border:0;font-size:20px;padding:10px;width:220px;box-sizing: content-box}
+#mode{border:0;font-size:20px;margin: 8px 0;padding:10px 4px;width:155px;box-sizing: content-box}
+#region{border:0;font-size:20px;margin: 8px 0;padding:10px 4px;width:64px;box-sizing: content-box}
+
+#info{border:1px solid #900;bbackground-color:aquamarine;color:red;max-width:400px;margin:0 auto;padding: 5px}
+#info:empty{display: none}
+#info i{display: inline-block;max-width:200px;white-space: nowrap;overflow: hidden;vertical-align: bottom;}
+.good{color:chartreuse}
+.bad{color:orangered}
+
+
+.abcd{display: inline-block;margin:5px 30px}
+.abcd td+td{min-width: 300px}
+.abcd td+td+td{min-width: 100px}
+
+
+#local_score{background-color: rgba(128, 128, 128,.5);position: absolute;top:190px;left:10px;wwidth:200px;text-align: center;display: none;}
+.high,.high+*{color: red;border-color: white}
+
+
+.hidden:after {
+    content: attr(data-txt);
+}
+
+
+#game{display:none;font-weight: bold;font-family: arial;user-select: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;user-select: none;}
+#canvas{position:fixed;top:0;left:0;}
+#minimap{background-color: rgba(200,250,250,.4);position:fixed;top:5px;left:5px;width: 105px;height:105px;overflow: hidden}
+#minimap_player{position: absolute;top:0;left:0;width: 10px;height: 10px;background-color:rgba(50,50,50,1);border-radius: 5px}
+
+.corner{ background-color: rgba(0,0,0,.0);position:fixed;text-align:right;text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000}
+.corner_left{position:fixed;text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000}
+#player_stats{bottom:5px;left:5px;}
+#performance_stats{bottom:5px;right:5px;}
+#leaderboard{top:5px;right:5px;}
+#latency,#players,#kills,#captured,#fps,#rank,#score{display: inline-block;min-width:50px;ffont-family:"monospace";}
+
+
+.stat_name{display: inline-block;width:60px;text-align: left}
+#kills,#captured,#rank,#score{text-align:right;width: 135px;}
+
+#captured{transition: color 3s;}
+#captured.ste{color:red;transition: color 0s;}
+#kills{transition: color 5s;}
+#kills.plus{color:gold;transition: color 0s;}
+
+#player_stats,#leaderboard{background-color: rgba(0,0,0,.2);padding: 8px}
+
+#player_name{width: 195px;overflow: hidden;white-space: nowrap;}
+#game h3{text-align: center;margin:5px 0}
+
+
+ol .nick{display: inline-block;width:200px;white-space: nowrap;overflow: hidden;ffont-family: arial}
+ol .score{display: inline-block;width:65px;overflow: hidden;text-align: right;padding-right:1px}
+
+#touch{display: none}
+#touch>div{background-color: rgba(255,255,255,0.1);position: fixed;height: 25vmin;width: 25vmin;border-radius: 5vmin;border: 1px solid white;opacity:.9;left:50%;top:50%;}
+#touch>div:active{opacity: 1;background-color: rgba(255,255,255,0.3);}
+#left{transform: translate(-180%, -50%);}
+#right{transform: translate(80%, -50%);}
+#up{transform: translate(-50%, -180%);}
+#down{transform: translate(-50%, 80%);}
+#pause{transform: translate(-50%, -50%);opacity:.1}
+
+
+@media  (max-width: 1000px) {
+    body {
+        bbackground: lightblue;
+    }
+	#local_score{position: static;margin-top:50px}
+	#social{position: static;margin-top:50px}
+}
+@media  (max-width: 950px) {
+	#leaderboard{zoom:.85}
+}
+@media  (max-width: 650px) {
+	#leaderboard{zoom:.6}
+	#player_stats{zoom:.7}
+	#performance_stats{zoom:.8}
+}
